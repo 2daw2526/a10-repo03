@@ -1,0 +1,89 @@
+/* Estilos generales */
+body {
+    background-image: url('../images/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Estilos para las cartas */
+.deck {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.card {
+    vertical-align: top;
+    display: inline-block;
+    margin: 0 10px 20px 0;
+}
+
+.card img {
+    image-rendering: pixelated;
+    height: 180px;
+    object-fit: contain;
+}
+
+.card h5 {
+    text-transform: capitalize;
+}
+
+/* Estilos para el carrito */
+#carro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.carro-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.carro-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+/* Notificaciones (izquierda) */
+#toastContainer {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    width: auto;
+    max-width: 350px;
+}
+
+.toast {
+    margin-bottom: 10px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Texto en mayúsculas para nombres */
+#pokenombre {
+    text-transform: uppercase;
+}
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

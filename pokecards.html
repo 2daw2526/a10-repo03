@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéDeck - Juego de Adivinanza Pokémon</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tu CSS personalizado (DEBE estar después de Bootstrap) -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-light">
+    <!-- Contenedor de notificaciones toast -->
+    <div id="toastContainer"></div>
+
+    <!-- Contenedor principal -->
+    <div class="container py-4">
+        <!-- Header -->
+        <header class="text-center mb-4">
+            <h1 class="display-4 text-primary fw-bold">PokéDeck</h1>
+            <p class="lead text-muted">Adivina qué Pokémon tiene más stats</p>
+        </header>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <button class="btn btn-success btn-iniciar" onclick="PokeDeck.iniciarJuego()">
+                <i class="bi bi-play-fill"></i> Iniciar juego
+            </button>
+            <button class="btn btn-primary btn-anadir" onclick="PokeDeck.anadirCarta()">
+                <i class="bi bi-plus-lg"></i> Añadir carta
+            </button>
+            <button class="btn btn-warning btn-cambiar" onclick="PokeDeck.cambiarCartas()">
+                <i class="bi bi-arrow-repeat"></i> Cambiar cartas
+            </button>
+            <button class="btn btn-danger btn-eliminar" onclick="PokeDeck.eliminarCartas()">
+                <i class="bi bi-trash-fill"></i> Eliminar cartas
+            </button>
+        </div>
+
+        <!-- Deck de cartas -->
+        <div class="deck bg-white p-4 rounded shadow mb-4">
+            <div class="text-center text-muted py-5">
+                <i class="bi bi-card-image fs-1"></i>
+                <p>Presiona "Iniciar juego" para comenzar</p>
+            </div>
+        </div>
+
+        <!-- Botón del carrito -->
+        <button class="btn btn-primary position-fixed top-0 end-0 m-3" 
+                type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito">
+            <i class="bi bi-cart-fill"></i> Carrito
+            <span id="carroContador" class="badge bg-danger ms-1">0</span>
+        </button>
+
+        <!-- Offcanvas del carrito -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito">
+            <div class="offcanvas-header bg-primary text-white">
+                <h5 class="offcanvas-title">Carrito de Pokémon</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div id="carro" class="mb-3"></div>
+                <button class="btn btn-danger w-100" onclick="Carro.removeAll()">
+                    <i class="bi bi-trash-fill"></i> Vaciar carrito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/Utils.js"></script>
+    <script src="./js/Carro.js"></script>
+    <script src="./js/PokeDeck.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para actualizar el contador del carrito -->
+    <script>
+        function actualizarContadorCarro() {
+            document.getElementById('carroContador').textContent = Carro.items.length;
+        }
+        
+        // Observar cambios en el carrito
+        const observer = new MutationObserver(actualizarContadorCarro);
+        observer.observe(document.getElementById('carro'), {
+            childList: true,
+            subtree: true
+        });
+        
+        // Actualizar al cargar
+        document.addEventListener('DOMContentLoaded', actualizarContadorCarro);
+    </script>
+</body>
+</html>
